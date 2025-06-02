@@ -936,17 +936,40 @@ function PDFEditor() {
           });
 
         // Blur overlays
+        // blurredRects
+        //   .filter((rect) => rect.page === pageIdx)
+        //   .forEach((rect) => {
+        //     page.drawRectangle({
+        //       x: rect.left * scaleX,
+        //       y: (cssPixelHeight - rect.top - rect.height) * scaleY,
+        //       width: rect.width * scaleX,
+        //       height: rect.height * scaleY,
+        //       color: rgb(1, 1, 1),
+        //       effect: "blur",
+        //       effectRadius: 6,
+        //       opacity: 0.9,
+        //     });
+        //   });
+
         blurredRects
           .filter((rect) => rect.page === pageIdx)
           .forEach((rect) => {
-            page.drawRectangle({
-              x: rect.left * scaleX,
-              y: (cssPixelHeight - rect.top - rect.height) * scaleY,
-              width: rect.width * scaleX,
-              height: rect.height * scaleY,
-              color: rgb(1, 1, 1),
-              opacity: 0.7,
-            });
+            // Create a "blurred" effect using noise
+            for (let i = 0; i < 5; i++) {
+              // Multiple layers for blur effect
+              page.drawRectangle({
+                x: rect.left * scaleX + Math.random() * 2 - 1,
+                y:
+                  (cssPixelHeight - rect.top - rect.height) * scaleY +
+                  Math.random() * 2 -
+                  1,
+                width: rect.width * scaleX,
+                height: rect.height * scaleY,
+                color: rgb(0.95, 0.95, 0.95),
+                opacity: 0.5,
+                borderWidth: 0,
+              });
+            }
           });
 
         // Text overlays
