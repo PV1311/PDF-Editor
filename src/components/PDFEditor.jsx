@@ -4,7 +4,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
-pdfjs.GlobalWorkerOptions.workerSrc = 'https://raw.githubusercontent.com/PV1311/PDF-Editor/refs/heads/main/public/pdfjs/pdf.worker.min.js';
+pdfjs.GlobalWorkerOptions.workerSrc = 'https://raw.githubusercontent.com/PV1311/PDF-Editor/refs/heads/main/public/pdfjs/pdf.worker.min.mjs';
 
 const FONT_OPTIONS = [
   { label: 'Arial', value: 'Arial, sans-serif' },
