@@ -60,16 +60,25 @@ function PDFEditor() {
 
   const dragStartPos = useRef(null);
 
+  // useEffect(() => {
+  //   // const pageCanvas = pdfWrapperRef.current?.querySelector("canvas");
+
+  //   console.log("Dimensions updated:", pageDims.width, pageDims.height);
+
+  //   // console.log(pageCanvas.width, pageCanvas.height);
+  // }, [pageDims]);
+
   // When PDF page is rendered, get its dimensions
   const onPageRenderSuccess = useCallback(() => {
     setTimeout(() => {
       const pageCanvas = pdfWrapperRef.current?.querySelector("canvas");
       if (pageCanvas) {
         setPageDims({
-          width: pageCanvas.width / window.devicePixelRatio,
-          height: pageCanvas.height / window.devicePixelRatio,
+          width: pageCanvas.width,
+          height: pageCanvas.height,
         });
       }
+      // console.log(pageCanvas.width, pageCanvas.height);
     }, 0);
   }, []);
 
@@ -170,6 +179,7 @@ function PDFEditor() {
     setBlurredRects([]);
     setEraseRects([]);
     setEraseMode(false);
+    // console.log(pageDims.height);
   }
 
   function handlePrevPage() {
@@ -905,6 +915,8 @@ function PDFEditor() {
       const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
       const renderedCanvas = pdfWrapperRef.current?.querySelector("canvas");
+      console.log(pageDims.height);
+
       const displayWidth = renderedCanvas?.width ?? pageDims.width;
       const displayHeight = renderedCanvas?.height ?? pageDims.height;
       const cssPixelHeight = displayHeight / window.devicePixelRatio;
